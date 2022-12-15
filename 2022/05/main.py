@@ -1,6 +1,5 @@
 from itertools import filterfalse
 with open('input.txt') as file:
-    # with open('test.txt') as file:
     cratesinput, instructionslist = file.read().split('\n\n')
 
 
@@ -28,13 +27,28 @@ def part_one():
     crates = cratesinput[::]
     for i in instructionslist:
         count, position, dest = i
-        position = int(position) - 1
-        dest = int(dest) - 1
+        position = position - 1
+        dest = dest - 1
         for i in range(count):
             crates[dest].append(crates[position].pop())
     solution = ''.join([x[-1] for x in crates])
-    print(crates)
+    # print(crates)
     print('Part One: ', solution)
 
 
+def part_two():
+    crates = cratesinput[::]
+    for i in instructionslist:
+        count, position, dest = i
+        position = position - 1
+        dest = dest - 1
+        liftedcrates = crates[position][count*-1:]
+        crates[position] = crates[position][:count*-1]
+        crates[dest].extend(liftedcrates)
+    solution = ''.join([x[-1] for x in crates])
+    # print(crates)
+    print('Part Two: ', solution)
+
+
 part_one()
+part_two()
