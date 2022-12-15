@@ -1,9 +1,10 @@
 with open('input.txt') as file:
     lines = file.readlines()
-inputlist = lines
+inputlist = [x[:-1] for x in lines]
 
 
-def lettervalue(ch):
+def lettervalue(c):
+    ch = ''.join(c)
     if not ch.isupper():
         return ord(ch) - 96
     else:
@@ -17,4 +18,14 @@ def part_one():
     print(duplicatesum)
 
 
+def part_two():
+    groupslist = []
+    for i in range(0, len(inputlist), 3):
+        groupslist.append([inputlist[i], inputlist[i+1], inputlist[i+2]])
+    badgelist = [list(set(x[0]) & set(x[1]) & set(x[2])) for x in groupslist]
+    badgesum = sum([lettervalue(x) for x in badgelist])
+    print(badgesum)
+
+
 part_one()
+part_two()
