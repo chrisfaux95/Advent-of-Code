@@ -1,7 +1,8 @@
 with open('input.txt') as file:
     lines = file.readlines()
-l = [x[:-1] for x in lines]
+inputlist = [x[:-1] for x in lines]
 # print(l)
+
 
 def part_one(inp):
     elves = []
@@ -12,8 +13,23 @@ def part_one(inp):
         else:
             elves.append(currentelf)
             currentelf = 0
-    elves.append(currentelf)        
+    elves.append(currentelf)
     return (max(elves))
 
-print(part_one(l))
 
+def part_two(inp):
+    elves = []
+    currentelf = 0
+    for i in inp:
+        if i != '':
+            currentelf += int(i)
+        else:
+            elves.append(currentelf)
+            currentelf = 0
+    elves.append(currentelf)
+    sorted_elves = sorted(elves, reverse=True)
+    return sum(sorted_elves[0:3])
+
+
+print(part_one(inputlist))
+print(part_two(inputlist))
