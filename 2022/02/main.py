@@ -15,9 +15,7 @@ def part_one():
         'C Y': 2,
         'C Z': 6
     }
-    scores = [rps_results[x] for x in inputlist]
-    totalscore = sum(scores)
-    return totalscore
+    return sum([rps_results[x] for x in inputlist])
 
 
 def part_two():
@@ -33,6 +31,7 @@ def part_two():
         'C Z': 7
     }
     return sum([rps_results[x] for x in inputlist])
+
 
 print(part_one())
 print(part_two())
